@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "47719626465",
+    "firebase_url": "https://oneapp-4b2d9.firebaseio.com",
+    "project_id": "oneapp-4b2d9",
+    "storage_bucket": "oneapp-4b2d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47719626465:android:339380722a389dc6",
+        "android_client_info": {
+          "package_name": "com.strangerandglory.one"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47719626465-9slmloe5fk52a4f8ngngb90qgb6c47d5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.strangerandglory.one",
+            "certificate_hash": "0B1C48EDB00E9095122FCED976F66DEFB9E0927F"
+          }
+        },
+        {
+          "client_id": "47719626465-78ho1f5s6trtgaguv384cnq0qk2h0lo6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPpICbr7IBOPrdX2puIlyINuZ_HdOrY48"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47719626465-78ho1f5s6trtgaguv384cnq0qk2h0lo6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
