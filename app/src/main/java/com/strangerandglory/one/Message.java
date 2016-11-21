@@ -5,7 +5,7 @@ package com.strangerandglory.one;
  */
 
 public class Message {
-    private String id;
+    private String uid;
     private String body;
     private Member sender_id;
     private String sent_timestamp;
@@ -13,11 +13,11 @@ public class Message {
     public Message(){}
 
     public String getId() {
-        return id;
+        return uid;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.uid = id;
     }
 
     public String getBody() {

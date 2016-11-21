@@ -1,11 +1,15 @@
 package com.strangerandglory.one;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.util.List;
 
 /**
  * Created by m on 2016-11-14.
  */
 
+
+@IgnoreExtraProperties
 public class Member {
     private String id;
     private String email;
@@ -17,8 +21,7 @@ public class Member {
     private List<Conversation> conversations;
     private Conversation conversation_id;
 
-    public Member(String id, String email, String first_name, String last_name,
-                  boolean is_active, int phone, String uid, List<Conversation> conversations){
+    public Member(String email, String first_name){
 
     }
 

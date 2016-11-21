@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString("uid",mAuth.getCurrentUser().getUid() );
                         editor.commit();
 
-                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, FriendsActivity.class);
                         startActivity(intent);
 
 
