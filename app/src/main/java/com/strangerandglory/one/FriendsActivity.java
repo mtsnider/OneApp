@@ -1,68 +1,93 @@
 package com.strangerandglory.one;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+
 public class FriendsActivity extends AppCompatActivity {
+    private SharedPreferences sharedPreferences;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private ListView mListView;
     private ProgressDialog pDialog;
     private Handler updateBarHandler;
-    ArrayList<String> friendsList;
-    Cursor cursor;
-    int counter;
+    private String newUser;
+    private ListView list;
+    private ArrayAdapter arrayAdapater;
+    private TextView userName; //single list item
+    private String addNewUser;
+    private Button add_user;
+    private ArrayList<String> list_of_users = new ArrayList<>();
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot().child("members");
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends);
-
+        sharedPreferences = getSharedPreferences("main", MODE_PRIVATE);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton addFriend = (FloatingActionButton) findViewById(R.id.floatingActionButton);
-        addFriend.setOnClickListener(new View.OnClickListener() {
+        add_user = (Button) findViewById(R.id.add_user);
+        list = (ListView) findViewById(R.id.friendslist);
+        userName = (TextView) findViewById(R.id.userName);
+
+        arrayAdapater = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list_of_users);
+
+
+
+
+        add_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Dialog dialog = new Dialog(FriendsActivity.this);
-                dialog.setContentView(R.layout.add_friend_dialog);
-                //dialog.setTitle("Title...");
+                addUser();
 
-                // set the custom dialog components - text, image and button
-                EditText email = (EditText) dialog.findViewById(R.id.add_email);
-                email.setText("Android custom dialog example!");
+                    Member user = new Member(addNewUser);
+                    root.child(sharedPreferences.getString("uid", "no udi"))
+                            .child("friends")
+                            .setValue(user);
 
+                Log.d("mAuth", sharedPreferences.getString("uid","no udi"));
 
-                Button add = (Button) dialog.findViewById(R.id.add_email_btn);
-                // if button is clicked, close the custom dialog
-                add.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+            }
+        });
 
+        root.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    }
-                });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
 
@@ -71,12 +96,30 @@ public class FriendsActivity extends AppCompatActivity {
 
 
 
+
+
+
+
     }
 
-    private void writeNewUser(String userId, String name, String email) {
-        Member user = new Member(name, email);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("users").child(userId).setValue(user);
+    private void addUser() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+                final EditText email = new EditText(this);
+
+                dialog.setView(email);
+                dialog.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        addNewUser = email.getText().toString();
+                    }
+                });
+                dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
     }
 
 

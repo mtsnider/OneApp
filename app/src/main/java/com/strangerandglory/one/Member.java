@@ -21,7 +21,7 @@ public class Member {
     private List<Conversation> conversations;
     private Conversation conversation_id;
 
-    public Member(String email, String first_name){
+    public Member(String first_name){
 
     }
 

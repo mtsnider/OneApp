@@ -1,20 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/logout"
+        android:title="Log Out"
+        app:showAsAction="always"/>
 
-    <!-- "Mark Favorite", should appear as action button if possible -->
+
     <item android:id="@+id/messages"
-        android:title="messages"
+        android:title="Messages"
 
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
 
     <item android:id="@+id/posts"
-        android:title="posts"
-        app:showAsAction="ifRoom"/>
+        android:title="Posts"
+        app:showAsAction="always"/>
 
     <!-- Settings, should always be in the overflow -->
     <item android:id="@+id/action_settings"
-        android:title="settings"
-        app:showAsAction="ifRoom"/>
+        android:title="Settings"
+        app:showAsAction="always"/>
 
 </menu>

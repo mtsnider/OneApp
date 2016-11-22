@@ -37,7 +37,7 @@ public class MessagesActivity extends AppCompatActivity {
 
         FirebaseApp app = FirebaseApp.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance(app);
-        final DatabaseReference chatRootNode = database.getReference("chat");
+        final DatabaseReference chatRootNode = database.getReference("messages");
 
         final EditText etMessage = (EditText)findViewById(R.id.etMessage);
         final String name = getIntent().getStringExtra("name");
